@@ -3,7 +3,7 @@
 import sys
 
 from er_afd.analizador import ErrorExpresion, analizar_expresion
-from er_afd.analizador import mostrar_arbol, obtener_alfabeto
+from er_afd.afnd import construir_afnd, mostrar_afnd
 
 
 def main():
@@ -21,11 +21,11 @@ def main():
         print(error)
         return 0
 
-    print("ER válida")
-    print("Alfabeto:", obtener_alfabeto(arbol))
-    mostrar_arbol(arbol)
+    afnd = construir_afnd(arbol)
+
+    mostrar_afnd(afnd)
     print("Cadena recibida:", repr(cadena))
-    print("Todavía falta construir el AFND y el AFD.")
+    print("Todavía falta convertir el AFND a AFD.")
 
     return 0
 

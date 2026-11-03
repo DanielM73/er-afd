@@ -11,7 +11,15 @@ El primer módulo está implementado:
 - operadores, conjuntos, rangos y escapes solicitados;
 - programa provisional desde la terminal, Makefile y pruebas.
 
-Los módulos Thompson, subconjuntos y simulación todavía deben agregarse. Por ahora se puede comprobar el módulo de entrada.
+También está implementada la construcción del AFND mediante Thompson:
+
+- estados `q0`, `q1`, ...;
+- transiciones épsilon;
+- unión, concatenación y cerradura de Kleene;
+- conjuntos, rangos y escapes;
+- tabla de transiciones con el formato solicitado.
+
+Los módulos de subconjuntos y simulación todavía deben agregarse.
 
 ## Uso en Linux
 
