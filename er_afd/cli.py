@@ -4,6 +4,7 @@ import sys
 
 from er_afd.analizador import ErrorExpresion, analizar_expresion
 from er_afd.afnd import construir_afnd, mostrar_afnd
+from er_afd.afd import convertir_a_afd, mostrar_afd
 
 
 def main():
@@ -22,10 +23,12 @@ def main():
         return 0
 
     afnd = construir_afnd(arbol)
+    afd = convertir_a_afd(afnd)
 
     mostrar_afnd(afnd)
+    mostrar_afd(afd)
     print("Cadena recibida:", repr(cadena))
-    print("Todavía falta convertir el AFND a AFD.")
+    print("Todavía falta evaluar la cadena con el AFD.")
 
     return 0
 

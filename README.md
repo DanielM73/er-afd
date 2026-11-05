@@ -19,7 +19,15 @@ También está implementada la construcción del AFND mediante Thompson:
 - conjuntos, rangos y escapes;
 - tabla de transiciones con el formato solicitado.
 
-Los módulos de subconjuntos y simulación todavía deben agregarse.
+La conversión del AFND a AFD también está implementada:
+
+- cierre épsilon;
+- movimiento por símbolo;
+- construcción de subconjuntos;
+- estados `Q0`, `Q1`, ...;
+- tabla determinista sin transiciones épsilon.
+
+El módulo de simulación todavía debe agregarse.
 
 ## Uso en Linux
 
@@ -35,4 +43,4 @@ También puede ejecutarse directamente:
 .venv/bin/er-afd '(a|b)*abb' 'abb'
 ```
 
-La explicación de este módulo se encuentra en `doc/01_modulo_entrada_er.md`.
+Las explicaciones de los módulos se encuentran dentro de la carpeta `doc`.
