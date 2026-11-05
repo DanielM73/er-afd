@@ -35,6 +35,12 @@ El módulo de simulación también está implementado:
 - validación de caracteres ASCII;
 - códigos de retorno 1 y 0.
 
+La precisión se puede comprobar con una batería de 36 casos:
+
+```bash
+.venv/bin/python pruebas_precision.py
+```
+
 ## Uso en Linux
 
 ```bash

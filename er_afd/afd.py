@@ -90,7 +90,7 @@ def mover(estados, simbolo, afnd):
     for estado in estados:
         for transicion in afnd["transiciones"]:
             mismo_estado = transicion["origen"] == estado
-            mismo_simbolo = transicion["simbolo"] == simbolo
+            mismo_simbolo = simbolos_compatibles(transicion["simbolo"], simbolo)
 
             if mismo_estado and mismo_simbolo:
                 destino = transicion["destino"]
@@ -100,6 +100,34 @@ def mover(estados, simbolo, afnd):
 
     alcanzados.sort()
     return alcanzados
+
+
+def simbolos_compatibles(simbolo_transicion, simbolo_alfabeto):
+    if simbolo_transicion == simbolo_alfabeto:
+        return True
+
+    if es_conjunto_negativo(simbolo_alfabeto):
+        return simbolo_transicion == "."
+
+    if simbolo_alfabeto == ".":
+        return False
+
+    if simbolo_transicion == ".":
+        return True
+
+    if es_conjunto_negativo(simbolo_transicion):
+        return acepta_conjunto_negativo(simbolo_transicion, simbolo_alfabeto)
+
+    return False
+
+
+def es_conjunto_negativo(simbolo):
+    return simbolo.startswith("[^") and simbolo.endswith("]")
+
+
+def acepta_conjunto_negativo(simbolo, caracter):
+    excluidos = simbolo[2:-1]
+    return caracter not in excluidos
 
 
 def buscar_conjunto(conjuntos, buscado):

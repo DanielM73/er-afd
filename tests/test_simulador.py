@@ -66,6 +66,20 @@ class PruebasSimulador(unittest.TestCase):
         self.assertFalse(validar_cadena("á"))
         self.assertFalse(validar_cadena("hola!"))
 
+    def test_literal_y_punto_pueden_coincidir(self):
+        afd = self.crear_afd("aX|.Y")
+
+        self.assertTrue(evaluar_cadena(afd, "aX")["aceptada"])
+        self.assertTrue(evaluar_cadena(afd, "aY")["aceptada"])
+        self.assertTrue(evaluar_cadena(afd, "bY")["aceptada"])
+
+    def test_literal_y_conjunto_negativo_pueden_coincidir(self):
+        afd = self.crear_afd("aX|[^b]Y")
+
+        self.assertTrue(evaluar_cadena(afd, "aX")["aceptada"])
+        self.assertTrue(evaluar_cadena(afd, "aY")["aceptada"])
+        self.assertFalse(evaluar_cadena(afd, "bY")["aceptada"])
+
 
 if __name__ == "__main__":
     unittest.main()
