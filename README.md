@@ -27,7 +27,13 @@ La conversión del AFND a AFD también está implementada:
 - estados `Q0`, `Q1`, ...;
 - tabla determinista sin transiciones épsilon.
 
-El módulo de simulación todavía debe agregarse.
+El módulo de simulación también está implementado:
+
+- recorrido carácter por carácter;
+- cadenas aceptadas y rechazadas;
+- comodín y conjuntos negativos;
+- validación de caracteres ASCII;
+- códigos de retorno 1 y 0.
 
 ## Uso en Linux
 

@@ -15,7 +15,8 @@ build: config
 	$(VENV_PYTHON) -m compileall -q er_afd
 
 run:
-	$(VENV_PYTHON) -m er_afd "$(ER)" "$(CADENA)"
+	@$(VENV_PYTHON) -m er_afd "$(ER)" "$(CADENA)"; codigo=$$?; \
+	if [ $$codigo -eq 0 ] || [ $$codigo -eq 1 ]; then exit 0; else exit $$codigo; fi
 
 test:
 	$(VENV_PYTHON) -m unittest discover -s tests -v
