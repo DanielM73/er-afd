@@ -9,7 +9,7 @@ El primer módulo está implementado:
 - analizador descendente recursivo sin librerías de regex;
 - representación sencilla con diccionarios y detección del alfabeto;
 - operadores, conjuntos, rangos y escapes solicitados;
-- programa provisional desde la terminal, Makefile y pruebas.
+- programa de línea de comando, Makefile y pruebas.
 
 También está implementada la construcción del AFND mediante Thompson:
 
@@ -35,7 +35,7 @@ El módulo de simulación también está implementado:
 - validación de caracteres ASCII;
 - códigos de retorno 1 y 0.
 
-La precisión se puede comprobar con una batería de 36 casos:
+La precisión se puede comprobar con una batería de 40 casos:
 
 ```bash
 .venv/bin/python pruebas_precision.py

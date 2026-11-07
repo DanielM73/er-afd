@@ -1,7 +1,10 @@
 """Conversión básica de AFND a AFD con construcción de subconjuntos."""
 
+import string
+
 
 def convertir_a_afd(afnd):
+    afnd = preparar_conjuntos_negativos(afnd)
     alfabeto = []
 
     for simbolo in afnd["alfabeto"]:
@@ -54,6 +57,62 @@ def convertir_a_afd(afnd):
         "finales": finales,
         "conjuntos": conjuntos
     }
+
+
+def preparar_conjuntos_negativos(afnd):
+    """Separa los conjuntos negativos cuando dos de ellos pueden coincidir."""
+    negativos = []
+
+    for simbolo in afnd["alfabeto"]:
+        if es_conjunto_negativo(simbolo) and simbolo not in negativos:
+            negativos.append(simbolo)
+
+    if len(negativos) < 2:
+        return afnd
+
+    caracteres = list(string.ascii_lowercase)
+    caracteres = caracteres + list(string.ascii_uppercase)
+    caracteres = caracteres + list(string.digits)
+    caracteres.append(" ")
+
+    alfabeto = []
+
+    for simbolo in afnd["alfabeto"]:
+        if es_conjunto_negativo(simbolo):
+            for caracter in caracteres:
+                if acepta_conjunto_negativo(simbolo, caracter):
+                    agregar_sin_repetir(alfabeto, caracter)
+        else:
+            agregar_sin_repetir(alfabeto, simbolo)
+
+    transiciones = []
+
+    for transicion in afnd["transiciones"]:
+        simbolo = transicion["simbolo"]
+
+        if es_conjunto_negativo(simbolo):
+            for caracter in caracteres:
+                if acepta_conjunto_negativo(simbolo, caracter):
+                    transiciones.append({
+                        "origen": transicion["origen"],
+                        "simbolo": caracter,
+                        "destino": transicion["destino"]
+                    })
+        else:
+            transiciones.append(transicion)
+
+    return {
+        "estados": afnd["estados"],
+        "alfabeto": alfabeto,
+        "transiciones": transiciones,
+        "inicial": afnd["inicial"],
+        "finales": afnd["finales"]
+    }
+
+
+def agregar_sin_repetir(lista, valor):
+    if valor not in lista:
+        lista.append(valor)
 
 
 def cierre_epsilon(estados, afnd):

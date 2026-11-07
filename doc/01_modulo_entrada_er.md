@@ -38,4 +38,4 @@ make test
 make run ER='(a|b)*abb' CADENA='abb'
 ```
 
-En esta etapa el programa valida la expresión y muestra la estructura encontrada. La construcción del AFND y del AFD se agregará en los siguientes módulos.
+Este módulo valida la expresión y guarda la estructura encontrada. Después, los demás módulos construyen el AFND, lo convierten en AFD y evalúan la cadena recibida.

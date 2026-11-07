@@ -42,7 +42,11 @@ CASOS = [
     ("aX|.Y", "bY", True),
     ("aX|[^b]Y", "aY", True),
     ("aX|[^b]Y", "bY", False),
-    (r"[a-z]\N", "m5", True)
+    (r"[a-z]\N", "m5", True),
+    ("[^a]X|[^b]Y", "cX", True),
+    ("[^a]X|[^b]Y", "cY", True),
+    ("[^a]X|[^b]Y", "aX", False),
+    ("[^a]X|[^b]Y", "bY", False)
 ]
 
 

@@ -80,6 +80,14 @@ class PruebasSimulador(unittest.TestCase):
         self.assertTrue(evaluar_cadena(afd, "aY")["aceptada"])
         self.assertFalse(evaluar_cadena(afd, "bY")["aceptada"])
 
+    def test_dos_conjuntos_negativos_pueden_coincidir(self):
+        afd = self.crear_afd("[^a]X|[^b]Y")
+
+        self.assertTrue(evaluar_cadena(afd, "cX")["aceptada"])
+        self.assertTrue(evaluar_cadena(afd, "cY")["aceptada"])
+        self.assertFalse(evaluar_cadena(afd, "aX")["aceptada"])
+        self.assertFalse(evaluar_cadena(afd, "bY")["aceptada"])
+
 
 if __name__ == "__main__":
     unittest.main()
